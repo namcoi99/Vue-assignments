@@ -1,42 +1,78 @@
 <template>
     <div class="filter-section">
         <div class="filter-list">
-            <el-select v-model="value" placeholder="Select">
-                <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
+            <div class="filter-item">
+                <el-select v-model="sortValue" clearable placeholder="Sort By">
+                    <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="filter-item">
+                <el-select v-model="conditionValue" clearable placeholder="Condition">
+                    <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="filter-item">
+                <el-select
+                    v-model="deliveryValue"
+                    clearable
+                    placeholder="Delivery Options"
                 >
-                </el-option>
-            </el-select>
-            <el-select v-model="value" placeholder="Select">
-                <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                >
-                </el-option>
-            </el-select>
-            <el-select v-model="value" placeholder="Select">
-                <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                >
-                </el-option>
-            </el-select>
+                    <el-option
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
+                    >
+                    </el-option>
+                </el-select>
+            </div>
         </div>
         <div class="show-option">
-            <button class="show-option-btn">Show all</button>
-            <button class="show-option-btn active">Auction</button>
-            <button class="show-option-btn">Buy now</button>
-            <button class="show-option-btn">
+            <button
+                class="show-option-btn"
+                :class="{ active: showOption === 'showAll' }"
+                @click="showOption = 'showAll'"
+            >
+                Show all
+            </button>
+            <button
+                class="show-option-btn"
+                :class="{ active: showOption === 'showAuction' }"
+                @click="showOption = 'showAuction'"
+            >
+                Auction
+            </button>
+            <button
+                class="show-option-btn"
+                :class="{ active: showOption === 'showBuyNow' }"
+                @click="showOption = 'showBuyNow'"
+            >
+                Buy now
+            </button>
+            <button
+                class="show-option-btn"
+                :class="{ active: showType === 'listType' }"
+                @click="showType = 'listType'"
+            >
                 <img src="@/assets/images/bai12/option-list.svg" alt="" />
             </button>
-            <button class="show-option-btn active">
+            <button
+                class="show-option-btn"
+                :class="{ active: showType === 'cardType' }"
+                @click="showType = 'cardType'"
+            >
                 <img src="@/assets/images/bai12/option-card.svg" alt="" />
             </button>
         </div>
@@ -75,6 +111,9 @@ export default {
                     label: 'Option5',
                 },
             ],
+            sortValue: '',
+            conditionValue: '',
+            deliveryValue: '',
             related: [
                 'worldwide shipping',
                 'under $50',
@@ -83,6 +122,8 @@ export default {
                 'pucker shoes',
                 'vintage typewriter',
             ],
+            showOption: '',
+            showType: '',
         };
     },
     methods: {},
@@ -97,10 +138,19 @@ export default {
 }
 
 .filter-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 50%;
 }
 
-.el-select {
-    margin: 0 8px;
+.filter-item {
+    flex: 1 30%;
+    margin: 0 1.5%;
+}
+
+.show-option {
+    max-width: 50%;
 }
 
 .show-option-btn {

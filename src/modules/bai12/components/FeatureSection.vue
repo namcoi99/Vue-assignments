@@ -42,7 +42,4 @@ export default {};
     font-size: 20px;
     font-weight: bold;
 }
-
-.feature-description {
-}
 </style>
