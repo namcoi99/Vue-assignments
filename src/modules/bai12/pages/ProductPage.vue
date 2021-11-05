@@ -13,4 +13,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.bai12 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    margin: 40px 16px;
+}
+</style>
