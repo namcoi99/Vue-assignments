@@ -1,6 +1,8 @@
 <template>
     <div class="product-card">
-        <img :src="product.image" :alt="product.name" />
+        <a href="#">
+            <img class="product-img" :src="product.image" :alt="product.name" />
+        </a>
         <h4 class="product-card-title">{{ product.name }}</h4>
         <span class="product-card-price">${{ product.price }}</span>
         <p class="product-card-description">{{ product.description }}</p>
@@ -38,11 +40,21 @@ export default {
 
 <style scoped>
 .product-card {
-    flex-basis: 21%;
+    flex-basis: 23%;
     flex-grow: 1;
-    padding: 2%;
+    padding: 16px 16px 12px;
+    margin: 1%;
     display: flex;
     flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0px 2px 4px rgba(59, 69, 123, 0.2), 0px 4px 8px rgba(92, 107, 192, 0.2);
+    border-radius: 8px;
+}
+
+.product-img {
+    width: 100%;
 }
 
 .product-card-title {
