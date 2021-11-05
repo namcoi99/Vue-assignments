@@ -84,4 +84,29 @@ export default {
     margin-top: 92px;
 }
 
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .bai11 {
+        padding: 64px 16px;
+    }
+
+    .feature-item {
+        width: 100%;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+    .feature-item {
+        width: 100%;
+    }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .feature-item {
+        width: 46%;
+    }
+}
+
 </style>
