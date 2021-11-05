@@ -61,5 +61,27 @@ export default {
 </script>
 
 <style scoped>
+.bai11 {
+    background-image: url('../../../assets/images/bai11/bai11-background-img.png');
+    min-height: 100vh;
+    padding: 128px 64px 64px;
+}
+
+.bai11-heading {
+    font-family: Epilogue;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 64px;
+    text-align: center;
+    color: #000000;
+}
+.feature-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 92px;
+}
 
 </style>
