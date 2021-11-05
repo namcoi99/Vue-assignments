@@ -23,7 +23,7 @@ export default {
                     price: 49.5,
                     description: 'Eligible for Shipping To Mars or somewhere else',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.05,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-2.png'),
@@ -31,7 +31,7 @@ export default {
                     price: 128.99,
                     description: '1258 bids, 359 watchers $5.95 for shipping',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.56,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-3.png'),
@@ -39,7 +39,7 @@ export default {
                     price: 128.99,
                     description: 'Eligible for nothing :(',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.87,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-4.png'),
@@ -48,7 +48,7 @@ export default {
                     description:
                         'Wordwide shitting available Buyers protection possible!',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.99,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-5.png'),
@@ -57,7 +57,7 @@ export default {
                     description:
                         'Wordwide shifting available Buyers protection possible!',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.99,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-6.png'),
@@ -65,7 +65,7 @@ export default {
                     price: 128.99,
                     description: 'Showcasing onHovered state',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.56,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-7.png'),
@@ -73,7 +73,7 @@ export default {
                     price: 13.95,
                     description: '1258 bids, 359 watchers $5.95 for shipping',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.77,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-8.png'),
@@ -81,7 +81,7 @@ export default {
                     price: 13.95,
                     description: 'Eligible for Shipping To Mars or somewhere else',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.87,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-9.png'),
@@ -89,7 +89,7 @@ export default {
                     price: 13.95,
                     description: 'Eligible for nothing :(',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.56,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-10.png'),
@@ -98,7 +98,7 @@ export default {
                     description:
                         'Wordwide shifting available Buyers protection possible!',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.99,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-11.png'),
@@ -106,7 +106,7 @@ export default {
                     price: 128.99,
                     description: 'Eligible for Shipping To Mars or somewhere else',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.23,
                 },
                 {
                     image: require('@/assets/images/bai12/Image-12.png'),
@@ -114,7 +114,7 @@ export default {
                     price: 128.99,
                     description: '1258 bids, 359 watchers $5.95 for shipping',
                     discount: 0,
-                    rating: 4,
+                    rating: 4.53,
                 },
             ],
         };
@@ -122,4 +122,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.product-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+</style>

@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bai12 {
     font-family: Inter;
     font-style: normal;
