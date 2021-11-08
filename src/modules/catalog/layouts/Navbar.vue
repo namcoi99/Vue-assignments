@@ -55,9 +55,10 @@ export default {};
 .catalog-navbar {
     display: flex;
     flex-direction: row;
-    margin: 0 260px;
     height: 80px;
+    padding: 0 260px;
     align-items: center;
+    border-bottom: 1px solid #cacdd8;
 }
 
 .catalog-navbar-nav {
