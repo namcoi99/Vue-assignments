@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import ProductCard from '@/modules/bai12/components/ProductCard.vue';
+import ProductCard from '@/modules/bai12/components/product/ProductCard.vue';
 export default {
     components: {
         ProductCard,
@@ -18,7 +18,7 @@ export default {
         return {
             products: [
                 {
-                    image: require('../../../assets/images/bai12/Image-1.png'),
+                    image: require('@/assets/images/bai12/Image-1.png'),
                     name: 'Vintage Typewriter to post awesome stories about UI design and webdev.',
                     price: 49.5,
                     description: 'Eligible for Shipping To Mars or somewhere else',

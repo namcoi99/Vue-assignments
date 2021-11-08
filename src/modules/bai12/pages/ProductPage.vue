@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import FilterSection from '@/modules/bai12/components/FilterSection.vue';
-import ProductSection from '@/modules/bai12/components/ProductSection.vue';
-import FeatureSection from '@/modules/bai12/components/FeatureSection.vue';
+import FilterSection from '@/modules/bai12/components/product/ProductFilterSection.vue';
+import ProductSection from '@/modules/bai12/components/product/ProductSection.vue';
+import FeatureSection from '@/modules/bai12/components/product/ProductFeatureSection.vue';
 export default {
     components: {
         FilterSection,
