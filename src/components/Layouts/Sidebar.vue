@@ -73,7 +73,7 @@
                                             class="nav-second-level mm-collapse"
                                             aria-expanded="false"
                                         >
-                                            <li class="nav-item">
+                                            <!-- <li class="nav-item">
                                                 <a class="nav-link" href="index.html"
                                                     ><i class="ti-control-record"></i
                                                     >Analytics</a
@@ -85,6 +85,18 @@
                                                     href="sales-index.html"
                                                     ><i class="ti-control-record"></i
                                                     >Sales</a
+                                                >
+                                            </li> -->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="bai11"
+                                                    ><i class="ti-control-record"></i>Bài
+                                                    1.1</a
+                                                >
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="bai12"
+                                                    ><i class="ti-control-record"></i>Bài
+                                                    1.2</a
                                                 >
                                             </li>
                                         </ul>
