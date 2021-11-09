@@ -1,6 +1,5 @@
 {
-    "products": 
-        [
+    "products": [
             {
               "id": 1,
               "img": ["product/1_1.png", "product/4_1.png", "product/3_1.png"],
