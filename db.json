@@ -79,7 +79,7 @@
               "description":
                 "MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop",
               "price": 3500,
-              "discount": 1399,
+              "discount": 0.1,
               "specs": {
                 "CPU": "N/A",
                 "Featured": "N/A",
@@ -114,7 +114,7 @@
               "description":
                 "MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop",
               "price": 2900,
-              "discount": 2899,
+              "discount": 0,
               "specs": {
                 "CPU": "N/A",
                 "Featured": "N/A",
@@ -149,7 +149,7 @@
               "description":
                 "MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop",
               "price": 2900,
-              "discount": 2899,
+              "discount": 0.1,
               "specs": {
                 "CPU": "N/A",
                 "Featured": "N/A",
@@ -184,7 +184,7 @@
               "description":
                 "MSI MPG Trident 3 10SC-005AU Intel i7 10700F, 2060 SUPER, 16GB RAM, 512GB SSD, 2TB HDD, Windows 10 Home, Gaming Keyboard and Mouse 3 Years Warranty Gaming Desktop",
               "price": 2900,
-              "discount": 1899,
+              "discount": 0,
               "specs": {
                 "CPU": "N/A",
                 "Featured": "N/A",
