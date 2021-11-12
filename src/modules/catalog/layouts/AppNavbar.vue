@@ -1,7 +1,7 @@
 <template>
     <div class="catalog-navbar">
         <div class="catalog-navbar-brand">
-            <img :src="require('@/assets/images/catalog/logo.png')" alt="logo" />
+            <img :src="logo" alt="logo" />
         </div>
         <ul class="catalog-navbar-nav">
             <li class="nav-item">
@@ -27,63 +27,56 @@
             </li>
         </ul>
         <router-link to="#">
-            <button class="deal-btn">Our Deals</button>
+            <button class="catalog-btn">Our Deals</button>
         </router-link>
         <div class="navbar-btn navbar-search-btn">
-            <img
-                :src="require('@/assets/images/catalog/search-icon.svg')"
-                alt="search icon"
-            />
+            <img :src="searchIcon" alt="search icon" />
         </div>
         <div class="navbar-btn navbar-cart-btn">
-            <img
-                :src="require('@/assets/images/catalog/cart-icon.svg')"
-                alt="cart icon"
-            />
+            <img :src="cartIcon" alt="cart icon" />
         </div>
         <div class="navbar-avatar">
-            <img :src="require('@/assets/images/catalog/avatar.png')" alt="avatar" />
+            <img :src="avatar" alt="avatar" />
         </div>
     </div>
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+import { defineComponent } from 'vue';
+
+export default defineComponent({
+    data() {
+        return {
+            logo: require('@/assets/images/catalog/logo.png'),
+            avatar: require('@/assets/images/catalog/avatar.png'),
+            cartIcon: require('@/assets/images/catalog/icon/cart-icon.svg'),
+            searchIcon: require('@/assets/images/catalog/icon/search-icon.svg'),
+        };
+    },
+});
 </script>
 
 <style scoped>
 .catalog-navbar {
     display: flex;
     flex-direction: row;
-    height: 80px;
-    padding: 0 260px;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80px;
+    max-width: 1400px;
     border-bottom: 1px solid #cacdd8;
 }
 
 .catalog-navbar-nav {
     display: inline-flex;
-    list-style-type: none;
     margin: 0;
+    list-style-type: none;
 }
 
 .nav-item {
-    font-weight: 600;
     padding: 0 12.5px;
-}
-
-.deal-btn {
-    border: 2px solid #0156ff;
-    border-radius: 50px;
-    padding: 8px 26px;
-    margin-right: auto;
-    background-color: #fff;
-    color: #0156ff;
-}
-
-.deal-btn:hover {
-    color: #fff;
-    background-color: #0156ff;
+    font-weight: 600;
 }
 
 .navbar-btn.navbar-search-btn {
@@ -95,23 +88,23 @@ export default {};
 }
 
 .navbar-cart-btn {
-    margin: 0 28px;
     position: relative;
+    margin: 0 28px;
 }
 
 .navbar-cart-btn::after {
     display: block;
-    content: '2';
     position: absolute;
+    content: '2';
     top: -10px;
     right: -10px;
-    background-color: #0156ff;
-    color: #fff;
-    border-radius: 50%;
-    width: 16px;
-    height: 16px;
     text-align: center;
     line-height: 16px;
     font-size: 10px;
+    background-color: #0156ff;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    color: #fff;
 }
 </style>

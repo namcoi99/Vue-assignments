@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <AppContact />
+        <AppNavbar />
+    </div>
+</template>
+
+<script>
+import AppContact from './AppContact.vue';
+import AppNavbar from './AppNavbar.vue';
+export default {
+    components: {
+        AppContact,
+        AppNavbar,
+    },
+};
+</script>
+
+<style scoped></style>
+>
