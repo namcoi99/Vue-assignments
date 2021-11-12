@@ -1,0 +1,85 @@
+<template>
+    <div class="product-top">
+        <div class="item-count">Items 1-35 of 61</div>
+        <div class="product-show-option">
+            <TopFilterSelect />
+            <button
+                class="show-option-btn"
+                :class="{ active: viewOption === VIEW_CARD_OPTION }"
+                @click="handleViewOption('card')"
+            >
+                <i class="el-icon-s-grid"></i>
+            </button>
+            <button
+                class="show-option-btn"
+                :class="{ active: viewOption === VIEW_DETAIL_OPTION }"
+                @click="handleViewOption('detail')"
+            >
+                <i class="el-icon-s-unfold"></i>
+            </button>
+        </div>
+    </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from 'vue';
+import { VIEW_DETAIL_OPTION, VIEW_CARD_OPTION } from '../../constants';
+import { filterModule } from '@/modules/catalog/store/filterStore';
+import TopFilterSelect from './TopFilterSelect.vue';
+
+export default defineComponent({
+    components: {
+        TopFilterSelect,
+    },
+    data() {
+        return {
+            VIEW_DETAIL_OPTION,
+            VIEW_CARD_OPTION,
+        };
+    },
+    computed: {
+        viewOption() {
+            return filterModule.getViewOption;
+        },
+    },
+    methods: {
+        handleViewOption(selected: string) {
+            filterModule.changeViewOption(selected);
+        },
+    },
+});
+</script>
+
+<style lang="scss" scoped>
+.product-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .item-count {
+        color: #a2a6b0;
+        font-size: 13px;
+        line-height: 50px;
+    }
+    .product-show-option {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+
+        .show-option-btn {
+            padding: 0;
+            margin-right: 9px;
+            font-size: 30px;
+            color: #e5e5e5;
+            background-color: #fff;
+            border: none;
+        }
+
+        .show-option-btn i {
+            font-size: 30px;
+        }
+        .show-option-btn.active {
+            color: #000;
+        }
+    }
+}
+</style>
