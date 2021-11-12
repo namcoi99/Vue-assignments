@@ -19,6 +19,7 @@ export default {
     border-radius: 16px;
     margin: 16px 10px;
     padding: 25px 50px;
+    text-align: left;
 }
 
 .feature-title {
@@ -38,4 +39,5 @@ export default {
     line-height: 21px;
     color: #555555;
 }
-</style>>
+</style>
+>
