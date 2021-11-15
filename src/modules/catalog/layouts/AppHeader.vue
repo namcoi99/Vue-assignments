@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app-header">
         <AppContact />
         <AppNavbar />
     </div>
@@ -16,5 +16,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
->
+<style scoped>
+.app-header {
+    border-bottom: 1px solid #cacdd8;
+}
+</style>

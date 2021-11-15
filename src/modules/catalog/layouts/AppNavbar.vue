@@ -1,9 +1,9 @@
 <template>
-    <div class="catalog-navbar">
-        <div class="catalog-navbar-brand">
+    <div class="app-navbar">
+        <div class="app-navbar-brand">
             <img :src="logo" alt="logo" />
         </div>
-        <ul class="catalog-navbar-nav">
+        <ul class="app-navbar-nav">
             <li class="nav-item">
                 <router-link to="#">Laptops</router-link>
             </li>
@@ -27,13 +27,16 @@
             </li>
         </ul>
         <router-link to="#">
-            <button class="catalog-btn">Our Deals</button>
+            <button class="app-btn plain">Our Deals</button>
         </router-link>
         <div class="navbar-btn navbar-search-btn">
             <img :src="searchIcon" alt="search icon" />
         </div>
         <div class="navbar-btn navbar-cart-btn">
             <img :src="cartIcon" alt="cart icon" />
+            <span class="cart-badge">
+                {{ productsNumber }}
+            </span>
         </div>
         <div class="navbar-avatar">
             <img :src="avatar" alt="avatar" />
@@ -43,6 +46,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { cartModule } from '../store/cartStore';
 
 export default defineComponent({
     data() {
@@ -53,11 +57,16 @@ export default defineComponent({
             searchIcon: require('@/assets/images/catalog/icon/search-icon.svg'),
         };
     },
+    computed: {
+        productsNumber(): number {
+            return cartModule.getProductsNumber;
+        },
+    },
 });
 </script>
 
 <style scoped>
-.catalog-navbar {
+.app-navbar {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -65,10 +74,9 @@ export default defineComponent({
     margin-right: auto;
     height: 80px;
     max-width: 1400px;
-    border-bottom: 1px solid #cacdd8;
 }
 
-.catalog-navbar-nav {
+.app-navbar-nav {
     display: inline-flex;
     margin: 0;
     list-style-type: none;
@@ -92,10 +100,8 @@ export default defineComponent({
     margin: 0 28px;
 }
 
-.navbar-cart-btn::after {
-    display: block;
+.cart-badge {
     position: absolute;
-    content: '2';
     top: -10px;
     right: -10px;
     text-align: center;

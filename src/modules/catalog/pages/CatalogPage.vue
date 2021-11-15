@@ -18,13 +18,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.catalog-btn {
-    border: 2px solid #0156ff;
+.app-btn {
     border-radius: 50px;
     padding: 8px 26px;
-    margin-right: auto;
-    background-color: #fff;
-    color: #0156ff;
+    color: #fff;
+    border: 2px solid #0156ff;
+    background-color: #0156ff;
     font-weight: 600;
     img {
         filter: invert(24%) sepia(81%) saturate(7008%) hue-rotate(222deg) brightness(105%)
@@ -32,13 +31,38 @@ export default defineComponent({
     }
 }
 
-.catalog-btn:hover {
+.app-btn:hover {
+    opacity: 0.8;
+}
+
+.app-btn.plain:hover {
     color: #fff;
     background-color: #0156ff;
     img {
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(55deg) brightness(102%)
             contrast(101%);
     }
+}
+
+.app-btn.plain {
+    background-color: #fff;
+    color: #0156ff;
+    img {
+        filter: invert(24%) sepia(81%) saturate(7008%) hue-rotate(222deg) brightness(105%)
+            contrast(101%);
+    }
+}
+
+.app-btn.clear {
+    color: #a2a6b0;
+    border: 2px solid #a2a6b0;
+    background-color: transparent;
+}
+.right {
+    float: right !important;
+}
+.hidden {
+    display: none !important;
 }
 </style>
 

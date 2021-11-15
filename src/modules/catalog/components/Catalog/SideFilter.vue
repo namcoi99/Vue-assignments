@@ -1,21 +1,21 @@
 <template>
     <el-aside class="catalog-filter" width="234px">
-        <div class="filter-heading">
-            <h3 class="filter-title">Filters</h3>
-            <button class="filter-clear-btn">Clear Filter</button>
-        </div>
+        <h3 class="filter-heading">Filters</h3>
+        <button class="app-btn clear">Clear Filter</button>
         <SideFilterGroup
-            v-for="(group, groupIndex) in filterGroups"
-            :key="groupIndex"
-            :filterGroup="group"
-        >
-        </SideFilterGroup>
+            v-for="(values, name, index) in filters"
+            :key="index"
+            :filterName="name"
+            :filterElements="values"
+        ></SideFilterGroup>
+        <button class="app-btn">Apply Filters (2)</button>
     </el-aside>
 </template>
 
 <script lang="ts">
 import SideFilterGroup from '@/modules/catalog/components/Catalog/SideFilterGroup.vue';
 import { defineComponent } from 'vue';
+import { filterModule } from '../../store/filterStore';
 export default defineComponent({
     props: {},
     components: {
@@ -23,30 +23,22 @@ export default defineComponent({
     },
     data() {
         return {
-            filterGroups: [],
+            filters: filterModule.getFilters,
         };
     },
     computed: {},
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .catalog-filter {
     background-color: #f5f7ff;
     padding: 20px 16px;
-}
-
-.filter-heading {
-    text-align: center;
-}
-
-.filter-clear-btn {
-    color: #a2a6b0;
-    border: 2px solid #a2a6b0;
-    border-radius: 50px;
-    text-align: center;
-    width: 100%;
-    height: 36px;
-    font-weight: 600;
+    .filter-heading {
+        text-align: center;
+    }
+    button {
+        width: 100%;
+    }
 }
 </style>

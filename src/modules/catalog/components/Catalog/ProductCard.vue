@@ -21,7 +21,7 @@
                 ${{ product.price }}
             </span>
             <span class="discount-price"> ${{ discountPrice }} </span>
-            <button class="catalog-btn cart-btn">
+            <button class="app-btn plain add-to-cart">
                 <img :src="cartIcon" alt="cart icon" />
                 Add To Cart
             </button>
@@ -130,7 +130,7 @@ export default defineComponent({
             font-size: 18px;
             font-weight: 600;
         }
-        .catalog-btn.cart-btn {
+        .app-btn.add-to-cart {
             display: block;
             margin-top: 47.5px;
         }

@@ -47,11 +47,16 @@ export default defineComponent({
         };
     },
     computed: {
+        selectedFilters() {
+            return filterModule.getFiltersSelected;
+        },
         filteredProducts() {
-            let filteredProducts;
             const products = productModule.getAllProducts;
+            let filteredProducts;
+
             const sortOption = filterModule.getSortOption;
             // const pageOption = filterModule.getPageOption;
+
             if (sortOption === POSITION_SORT_OPTION) {
                 filteredProducts = products.sort((a, b) => a.id - b.id);
             }
@@ -72,6 +77,7 @@ export default defineComponent({
             if (sortOption === NAME_SORT_OPTION) {
                 filteredProducts = products.sort((a, b) => a.name.localeCompare(b.name));
             }
+
             return filteredProducts;
         },
     },
