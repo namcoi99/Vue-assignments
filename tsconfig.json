@@ -35,7 +35,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/modules/catalog/components/Catalog/CatalogBreadcrumb.vue", "src/modules/catalog/layouts/AppContact.vue", "src/modules/catalog/layouts/AppHeader.vue", "src/modules/catalog/components/Catalog/ProductFilter.vue", "src/modules/catalog/components/Catalog/BodyContent.vue", "src/modules/catalog/components/Catalog/TopFilterSelect.vue", "src/modules/catalog/components/Catalog/SideFilter.vue"  ],
+, "src/modules/catalog/components/Catalog/CatalogBreadcrumb.vue", "src/modules/catalog/layouts/AppContact.vue", "src/modules/catalog/layouts/AppHeader.vue", "src/modules/catalog/components/Catalog/ProductFilter.vue", "src/modules/catalog/components/Catalog/BodyContent.vue", "src/modules/catalog/components/Catalog/TopFilterSelect.vue", "src/modules/catalog/components/Catalog/SideFilter.vue", "src/modules/catalog/components/Product/TopNavigation.vue", "src/modules/catalog/components/Product/TopNav.vue"  ],
   "exclude": [
     "node_modules"
   ]
