@@ -29,7 +29,30 @@ export interface ICategory {
 
 export interface IPrice {
     id: number;
-    min: number;
-    max: number;
+    min?: number;
+    max?: number;
     quantity: number;
+}
+
+export interface IColor {
+    id: number;
+    hexCode: string;
+}
+
+export interface IFilters {
+    filterCategories?: ICategory[];
+    filterPrices?: IPrice[];
+    filterColors?: IColor[];
+}
+
+export interface ISelectedPrice {
+    min?: number;
+    max?: number;
+}
+
+export interface ISelectedFilters {
+    category: string | null;
+    price: ISelectedPrice | null;
+    color: string | null;
+    name: string | null;
 }
