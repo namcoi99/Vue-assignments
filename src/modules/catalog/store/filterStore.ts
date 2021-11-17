@@ -1,4 +1,11 @@
-import { ICategory, IPrice, IFilters, IColor, ISelectedPrice } from './../types';
+import {
+    ICategory,
+    IPrice,
+    IFilters,
+    IColor,
+    ISelectedPrice,
+    ISelectedFilters,
+} from './../types';
 import {
     VIEW_DETAIL_OPTION,
     POSITION_SORT_OPTION,
@@ -79,6 +86,7 @@ class Filter extends VuexModule {
         {
             id: 8,
             min: 7000,
+            max: 99999999,
             quantity: 1,
         },
     ];
@@ -92,6 +100,18 @@ class Filter extends VuexModule {
             id: 2,
             hexCode: '#000000',
         },
+        {
+            id: 3,
+            hexCode: '#4B4D4F',
+        },
+        {
+            id: 4,
+            hexCode: '#F2E9DC',
+        },
+        {
+            id: 5,
+            hexCode: '#EAE8EB',
+        },
     ];
 
     filters: IFilters = {
@@ -100,7 +120,12 @@ class Filter extends VuexModule {
         filterColors: this.filterColors,
     };
 
-    filtersSelected: ISelectedPrice = {};
+    filtersSelected: ISelectedFilters = {
+        categories: [],
+        prices: [],
+        colors: [],
+        name: '',
+    };
 
     get getViewOption() {
         return this.viewOption;
@@ -149,8 +174,39 @@ class Filter extends VuexModule {
     }
 
     @Mutation
-    updateSelectedFilters(selectedFilter: { [x: string]: string | ISelectedPrice }) {
-        Object.assign(this.filtersSelected, selectedFilter);
+    updateCategoriesSelected(category: string) {
+        const categoriesSelected = this.filtersSelected.categories;
+        const index = this.filtersSelected.categories.indexOf(category);
+        if (index > -1) {
+            categoriesSelected.splice(index, 1);
+        } else {
+            categoriesSelected.push(category);
+        }
+    }
+
+    @Mutation
+    updatePricesSelected(price: ISelectedPrice) {
+        const pricesSelected = this.filtersSelected.prices;
+        const index = this.filtersSelected.prices.findIndex(
+            (priceSelected) =>
+                priceSelected.max === price.max && priceSelected.min === price.min,
+        );
+        if (index > -1) {
+            pricesSelected.splice(index, 1);
+        } else {
+            pricesSelected.push(price);
+        }
+    }
+
+    @Mutation
+    updateColorsSelected(color: string) {
+        const colorsSelected = this.filtersSelected.colors;
+        const index = this.filtersSelected.colors.indexOf(color);
+        if (index > -1) {
+            colorsSelected.splice(index, 1);
+        } else {
+            colorsSelected.push(color);
+        }
     }
 
     @Action({ commit: 'updateViewOption' })
@@ -168,9 +224,19 @@ class Filter extends VuexModule {
         return perPage;
     }
 
-    @Action({ commit: 'updateSelectedFilters' })
-    selectFilter(selectedFilter: { [x: string]: string | ISelectedPrice }) {
-        return selectedFilter;
+    @Action({ commit: 'updateCategoriesSelected' })
+    selectCategory(category: string) {
+        return category;
+    }
+
+    @Action({ commit: 'updatePricesSelected' })
+    selectPrice(price: ISelectedPrice) {
+        return price;
+    }
+
+    @Action({ commit: 'updateColorsSelected' })
+    selectColor(color: string) {
+        return color;
     }
 }
 

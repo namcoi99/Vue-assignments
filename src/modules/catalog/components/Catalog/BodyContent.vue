@@ -33,6 +33,7 @@ import {
     PRICE_ASC_SORT_OPTION,
     PRICE_DSC_SORT_OPTION,
 } from '../../constants';
+import { IProduct } from '../../types';
 
 export default defineComponent({
     components: {
@@ -50,9 +51,9 @@ export default defineComponent({
         selectedFilters() {
             return filterModule.getFiltersSelected;
         },
-        filteredProducts() {
+        filteredProducts(): IProduct[] {
             const products = productModule.getAllProducts;
-            let filteredProducts;
+            let filteredProducts: IProduct[] = [];
 
             const sortOption = filterModule.getSortOption;
             // const pageOption = filterModule.getPageOption;
@@ -77,8 +78,14 @@ export default defineComponent({
             if (sortOption === NAME_SORT_OPTION) {
                 filteredProducts = products.sort((a, b) => a.name.localeCompare(b.name));
             }
-
-            return filteredProducts;
+            const filtersSelected = filterModule.getFiltersSelected;
+            return filteredProducts.filter(
+                (product) =>
+                    filtersSelected.categories.includes(product.category) ||
+                    product.colors.some((color) =>
+                        filtersSelected.colors.includes(color),
+                    ),
+            );
         },
     },
     methods: {
