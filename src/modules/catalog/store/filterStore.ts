@@ -209,6 +209,14 @@ class Filter extends VuexModule {
         }
     }
 
+    @Mutation
+    public clearAllFilter() {
+        this.filtersSelected.categories = [];
+        this.filtersSelected.colors = [];
+        this.filtersSelected.prices = [];
+        this.filtersSelected.name = '';
+    }
+
     @Action({ commit: 'updateViewOption' })
     changeViewOption(type: string) {
         return type;

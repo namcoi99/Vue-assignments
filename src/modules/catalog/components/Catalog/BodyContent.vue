@@ -14,6 +14,19 @@
                     :key="product.id"
                     :product="product"
                 />
+                <router-link
+                    :to="{ name: 'catalog', query: { page: page - 1 } }"
+                    rel="prev"
+                    v-if="page != 1"
+                    >Prev Page</router-link
+                >
+
+                <router-link
+                    :to="{ name: 'catalog', query: { page: page + 1 } }"
+                    rel="next"
+                    v-if="hasNextPage"
+                    >Next Page</router-link
+                >
             </el-col>
         </el-row>
     </div>
@@ -29,13 +42,20 @@ import { productModule } from '../../store/productStore';
 import { filterModule } from '../../store/filterStore';
 import {
     NAME_SORT_OPTION,
+    DEFAULT_PAGE_LIMIT,
     POSITION_SORT_OPTION,
     PRICE_ASC_SORT_OPTION,
     PRICE_DSC_SORT_OPTION,
 } from '../../constants';
-import { IProduct } from '../../types';
+import { IProduct, ISelectedPrice } from '../../types';
 
 export default defineComponent({
+    props: {
+        page: {
+            type: Number,
+            required: true,
+        },
+    },
     components: {
         Breadcrumb,
         SideFilter,
@@ -79,18 +99,52 @@ export default defineComponent({
                 filteredProducts = products.sort((a, b) => a.name.localeCompare(b.name));
             }
             const filtersSelected = filterModule.getFiltersSelected;
-            return filteredProducts.filter(
-                (product) =>
-                    filtersSelected.categories.includes(product.category) ||
+            if (filtersSelected.categories.length !== 0) {
+                filteredProducts = filteredProducts.filter((product) =>
+                    filtersSelected.categories.includes(product.category),
+                );
+            }
+            if (filtersSelected.colors.length !== 0) {
+                filteredProducts = filteredProducts.filter((product) =>
                     product.colors.some((color) =>
                         filtersSelected.colors.includes(color),
                     ),
+                );
+            }
+            if (filtersSelected.prices.length !== 0) {
+                const min = this.getMinFilterPrice(filtersSelected.prices);
+                const max = this.getMaxFilterPrice(filtersSelected.prices);
+                filteredProducts = filteredProducts.filter(
+                    (product) => product.price >= min && product.price <= max,
+                );
+            }
+            return filteredProducts;
+        },
+        hasNextPage(): boolean {
+            const totalPages = Math.ceil(
+                productModule.getProductsCount / DEFAULT_PAGE_LIMIT,
             );
+
+            return this.page < totalPages;
         },
     },
     methods: {
         discountPrice(price: number, discount: number) {
             return price * (1 - discount);
+        },
+        getMinFilterPrice(prices: ISelectedPrice[]) {
+            return prices.reduce((previousElement, currentElement) =>
+                previousElement.min < currentElement.min
+                    ? previousElement
+                    : currentElement,
+            ).min;
+        },
+        getMaxFilterPrice(prices: ISelectedPrice[]) {
+            return prices.reduce((previousElement, currentElement) =>
+                previousElement.min > currentElement.min
+                    ? previousElement
+                    : currentElement,
+            ).max;
         },
     },
 });

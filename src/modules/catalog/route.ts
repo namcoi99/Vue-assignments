@@ -9,5 +9,6 @@ export default [
         meta: {
             public: true,
         },
+        props: (route) => ({ page: parseInt(route.query.page as string) || 1 }),
     },
 ] as RouteRecordRaw[];

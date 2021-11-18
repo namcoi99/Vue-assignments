@@ -1,18 +1,32 @@
 <template>
     <div class="catalog">
         <AppHeader />
-        <BodyContent />
+        <BodyContent :page="page" />
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, watchEffect } from 'vue';
 import AppHeader from '@/modules/catalog/layouts/AppHeader.vue';
-import BodyContent from '@/modules/catalog/components/Catalog/BodyContent.vue';
+import BodyContent from '@/modules/catalog/components/catalog/BodyContent.vue';
+import { productModule } from '../store/productStore';
+import { DEFAULT_PAGE_LIMIT } from '../constants';
 export default defineComponent({
+    props: {
+        page: {
+            type: Number,
+            required: true,
+        },
+    },
     components: {
         AppHeader,
         BodyContent,
+    },
+
+    created() {
+        watchEffect(() => {
+            productModule.getProducts({ limit: DEFAULT_PAGE_LIMIT, page: this.page });
+        });
     },
 });
 </script>

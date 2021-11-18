@@ -26,3 +26,5 @@ export const THIRTYFIVE_PER_PAGE_OPTION = 35;
 export const CATEGORY_FILTER = 'filterCategories';
 export const PRICE_FILTER = 'filterPrices';
 export const COLOR_FILTER = 'filterColors';
+
+export const DEFAULT_PAGE_LIMIT = 5;

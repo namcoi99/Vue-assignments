@@ -56,3 +56,8 @@ export interface ISelectedFilters {
     colors: string[];
     name: string;
 }
+
+export interface IPage {
+    limit: number;
+    page: number;
+}

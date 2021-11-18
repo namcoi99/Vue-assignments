@@ -1,7 +1,7 @@
 <template>
     <el-aside class="catalog-filter" width="234px">
         <h3 class="filter-heading">Filters</h3>
-        <button class="app-btn clear">Clear Filter</button>
+        <button @click="clearFilter" class="app-btn clear">Clear Filter</button>
 
         <!-- Category Filter -->
         <div class="filter-group">
@@ -137,6 +137,9 @@ export default defineComponent({
             return `$${element.min} ${
                 element.max < MAX_VALUE ? `- ${element.max}` : 'And Above'
             }`;
+        },
+        clearFilter() {
+            filterModule.clearAllFilter();
         },
     },
 });
