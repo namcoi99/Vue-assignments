@@ -210,5 +210,94 @@
               "rating": 4,
               "reviews": 4
             }
-          ]
+          ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "CUSTOM PCS",
+            "quantity": 15,
+        },
+        {
+            "id": 2,
+            "name": "MSI ALL-IN-ONE PCS",
+            "quantity": 45,
+        },
+        {
+            "id": 3,
+            "name": "HP/COMPAQ PCS",
+            "quantity": 1,
+        }
+    ],
+    "prices" : [
+        {
+            "id": 1,
+            "min": 0,
+            "max": 1000,
+            "quantity": 19
+        },
+        {
+            "id": 2,
+            "min": 1000,
+            "max": 2000,
+            "quantity": 21
+        },
+        {
+            "id": 3,
+            "min": 2000,
+            "max": 3000,
+            "quantity": 9
+        },
+        {
+            "id": 4,
+            "min": 3000,
+            "max": 4000,
+            "quantity": 6
+        },
+        {
+            "id": 5,
+            "min": 4000,
+            "max": 5000,
+            "quantity": 3
+        },
+        {
+            "id": 6,
+            "min": 5000,
+            "max": 6000,
+            "quantity": 1
+        },
+        {
+            "id": 7,
+            "min": 6000,
+            "max": 7000,
+            "quantity": 1
+        },
+        {
+            "id": 8,
+            "min": 7000,
+            "max": 99999999,
+            "quantity": 1
+        }
+    ],
+    "colors": [
+        {
+            "id": 1,
+            "hexCode": "#DB0000"
+        },
+        {
+            "id": 2,
+            "hexCode": "#000000"
+        },
+        {
+            "id": 3,
+            "hexCode": "#4B4D4F"
+        },
+        {
+            "id": 4,
+            "hexCode": "#F2E9DC"
+        },
+        {
+            "id": 5,
+            "hexCode": "#EAE8EB"
+        }
+    ]
 }
