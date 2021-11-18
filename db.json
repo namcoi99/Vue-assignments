@@ -1,7 +1,5 @@
 {
     "products": [
-        {
-    "products": [
             {
               "id": 1,
               "img": ["product/1_1", "product/4_1", "product/3_1"],
@@ -213,6 +211,4 @@
               "reviews": 4
             }
           ]
-}
-    ]
 }
