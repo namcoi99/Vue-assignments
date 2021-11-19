@@ -6,11 +6,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watchEffect } from 'vue';
+import { defineComponent } from 'vue';
 import AppHeader from '@/modules/catalog/layouts/AppHeader.vue';
 import BodyContent from '@/modules/catalog/components/catalog/BodyContent.vue';
-import { productModule } from '../store/productStore';
-import { DEFAULT_PAGE_LIMIT } from '../constants';
 export default defineComponent({
     props: {
         page: {
@@ -21,12 +19,6 @@ export default defineComponent({
     components: {
         AppHeader,
         BodyContent,
-    },
-
-    created() {
-        watchEffect(() => {
-            productModule.getProducts({ limit: DEFAULT_PAGE_LIMIT, page: this.page });
-        });
     },
 });
 </script>
@@ -77,6 +69,9 @@ export default defineComponent({
 }
 .hidden {
     display: none !important;
+}
+.fw-bold {
+    font-weight: 600 !important;
 }
 </style>
 

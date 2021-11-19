@@ -17,6 +17,7 @@ export const PRICE_DSC_SORT_OPTION = 'PriceDSC';
 export const NAME_SORT_OPTION = 'Name';
 
 // Page option
+export const DEFAULT_CURRENT_PAGE = 1;
 export const FIVE_PER_PAGE_OPTION = 5;
 export const TEN_PER_PAGE_OPTION = 10;
 export const TWENTY_PER_PAGE_OPTION = 20;

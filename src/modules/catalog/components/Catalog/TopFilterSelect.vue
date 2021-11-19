@@ -16,7 +16,7 @@
         </select>
     </div>
     <div class="selection-box">
-        <label class="selection-label" for="page-option">Show:</label>
+        <label class="selection-label fw-bold" for="page-option">Show:</label>
         <select
             class="selection_box__inner"
             id="page-option"
@@ -115,7 +115,6 @@ export default defineComponent({
         position: absolute;
         left: 8%;
         align-self: center;
-        font-weight: 600;
         color: #a2a6b0;
         pointer-events: none;
     }

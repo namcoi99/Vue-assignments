@@ -1,5 +1,7 @@
 <template>
     <div class="catalog-content">
+        perPage: {{ perPage }}; total: {{ totalProducts }}; currentPage :
+        {{ page }}
         <img class="catalog-hero-banner" :src="heroBanner" alt="hero banner" />
         <Breadcrumb />
         <h1 class="catalog-title">MSI PS Series(20)</h1>
@@ -9,24 +11,32 @@
             </el-col>
             <el-col class="product-section" :span="20">
                 <TopFilter />
+                <div v-if="categoriesSelected.length !== 0" class="selected-categories">
+                    <div
+                        v-for="(category, index) in categoriesSelected"
+                        class="selected-category fw-bold"
+                        :key="index"
+                    >
+                        {{ category }}
+                        <span class="fw-light">(24)</span>
+                        <button class="clear-category-btn">X</button>
+                    </div>
+                    <button class="selected-category fw-bold">Clear All</button>
+                </div>
                 <ProductCard
                     v-for="product in filteredProducts"
                     :key="product.id"
                     :product="product"
                 />
-                <router-link
-                    :to="{ name: 'catalog', query: { page: page - 1 } }"
-                    rel="prev"
-                    v-if="page != 1"
-                    >Prev Page</router-link
-                >
-
-                <router-link
-                    :to="{ name: 'catalog', query: { page: page + 1 } }"
-                    rel="next"
-                    v-if="hasNextPage"
-                    >Next Page</router-link
-                >
+                <el-col :span="24">
+                    <el-pagination
+                        v-model:page-size="perPage"
+                        v-model:current-page="page"
+                        layout="prev, pager, next"
+                        :total="6"
+                    >
+                    </el-pagination>
+                </el-col>
             </el-col>
         </el-row>
     </div>
@@ -37,25 +47,19 @@ import Breadcrumb from './Breadcrumb.vue';
 import SideFilter from './SideFilter.vue';
 import TopFilter from './TopFilter.vue';
 import ProductCard from './ProductCard.vue';
-import { defineComponent } from 'vue';
+import { defineComponent, watchEffect } from 'vue';
 import { productModule } from '../../store/productStore';
 import { filterModule } from '../../store/filterStore';
 import {
     NAME_SORT_OPTION,
-    DEFAULT_PAGE_LIMIT,
     POSITION_SORT_OPTION,
     PRICE_ASC_SORT_OPTION,
     PRICE_DSC_SORT_OPTION,
 } from '../../constants';
 import { IProduct, ISelectedPrice } from '../../types';
 
+// FIXME: hard code total products in pagination + conflict with filtering
 export default defineComponent({
-    props: {
-        page: {
-            type: Number,
-            required: true,
-        },
-    },
     components: {
         Breadcrumb,
         SideFilter,
@@ -65,9 +69,23 @@ export default defineComponent({
     data() {
         return {
             heroBanner: require('@/assets/images/catalog/hero-banner.png'),
+            perPage: filterModule.getPageOption,
+            page: filterModule.getCurrentPage,
+            total: productModule.getProductsCount,
         };
     },
+    created() {
+        watchEffect(() => {
+            productModule.getProducts({
+                limit: this.perPage,
+                page: this.page,
+            });
+        });
+    },
     computed: {
+        categoriesSelected() {
+            return filterModule.getFiltersSelected.categories;
+        },
         selectedFilters() {
             return filterModule.getFiltersSelected;
         },
@@ -120,13 +138,6 @@ export default defineComponent({
             }
             return filteredProducts;
         },
-        hasNextPage(): boolean {
-            const totalPages = Math.ceil(
-                productModule.getProductsCount / DEFAULT_PAGE_LIMIT,
-            );
-
-            return this.page < totalPages;
-        },
     },
     methods: {
         discountPrice(price: number, discount: number) {
@@ -150,7 +161,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .catalog-content {
     margin-right: auto;
     margin-left: auto;
@@ -162,5 +173,32 @@ export default defineComponent({
 }
 .product-section {
     padding-left: 6px;
+    .selected-categories {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 13px;
+        .selected-category {
+            display: flex;
+            align-items: center;
+            padding: 0 17px;
+            height: 38px;
+            background-color: #fff;
+            border: 1px solid #cacdd8;
+            border-radius: 2px;
+        }
+        .selected-category ~ .selected-category {
+            margin-left: 6px;
+        }
+    }
+}
+.clear-category-btn {
+    margin-left: 4px;
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    background-color: #c94d3f;
+    outline: none;
+    border: none;
+    border-radius: 50%;
 }
 </style>

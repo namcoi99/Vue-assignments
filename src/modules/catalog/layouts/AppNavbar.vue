@@ -3,7 +3,7 @@
         <div class="app-navbar-brand">
             <img :src="logo" alt="logo" />
         </div>
-        <ul class="app-navbar-nav">
+        <ul class="app-navbar-nav fw-bold">
             <li class="nav-item">
                 <router-link to="#">Laptops</router-link>
             </li>
@@ -84,7 +84,6 @@ export default defineComponent({
 
 .nav-item {
     padding: 0 12.5px;
-    font-weight: 600;
 }
 
 .navbar-btn.navbar-search-btn {

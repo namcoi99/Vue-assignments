@@ -20,7 +20,7 @@
             <span v-if="product.discount > 0" class="basic-price">
                 ${{ product.price }}
             </span>
-            <span class="discount-price"> ${{ discountPrice }} </span>
+            <span class="discount-price fw-bold"> ${{ discountPrice }} </span>
             <button class="app-btn plain add-to-cart">
                 <img :src="cartIcon" alt="cart icon" />
                 Add To Cart
@@ -128,7 +128,6 @@ export default defineComponent({
         .discount-price {
             margin-left: 8px;
             font-size: 18px;
-            font-weight: 600;
         }
         .app-btn.add-to-cart {
             display: block;

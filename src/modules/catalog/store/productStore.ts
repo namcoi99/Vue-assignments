@@ -11,24 +11,23 @@ class Product extends VuexModule {
     productsCount = 0;
 
     @Mutation
-    setProducts(products: IProduct[]) {
-        this.products = [...products];
+    setProducts(responseData: { products: IProduct[]; totalProducts: number }) {
+        this.products = responseData.products;
+        this.productsCount = responseData.totalProducts;
     }
 
     @Action({ commit: 'setProducts' })
     async getProducts(pageOption: IPage) {
-        // const products = await productService.getList({
-        //     _limit: pageOption.limit,
-        //     _page: pageOption.page
-        // })
-
         const response = await axios.get(PRODUCT_BASE_URL, {
             params: {
                 _limit: pageOption.limit,
                 _page: pageOption.page,
             },
         });
-        return response.data;
+        return {
+            products: response.data,
+            totalProducts: response.headers['x-total-count'],
+        };
     }
 
     get getAllProducts() {

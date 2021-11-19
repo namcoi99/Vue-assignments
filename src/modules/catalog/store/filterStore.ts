@@ -9,10 +9,11 @@ import {
 import {
     VIEW_DETAIL_OPTION,
     POSITION_SORT_OPTION,
-    TEN_PER_PAGE_OPTION,
     VIEW_DETAIL_TYPE,
     VIEW_CARD_TYPE,
     VIEW_CARD_OPTION,
+    FIVE_PER_PAGE_OPTION,
+    DEFAULT_CURRENT_PAGE,
 } from './../constants';
 import { getModule, VuexModule, Mutation, Action, Module } from 'vuex-module-decorators';
 import store from '@/store';
@@ -21,7 +22,8 @@ import store from '@/store';
 class Filter extends VuexModule {
     viewOption: number[] = VIEW_DETAIL_OPTION;
     sortOption: string = POSITION_SORT_OPTION;
-    pageOption: number = TEN_PER_PAGE_OPTION;
+    pageOption: number = FIVE_PER_PAGE_OPTION;
+    currentPage: number = DEFAULT_CURRENT_PAGE;
     filterCategories: ICategory[] = [
         {
             id: 1,
@@ -147,6 +149,10 @@ class Filter extends VuexModule {
         return this.filtersSelected;
     }
 
+    get getCurrentPage() {
+        return this.currentPage;
+    }
+
     @Mutation
     updateViewOption(type: string) {
         if (type === VIEW_DETAIL_TYPE) {
@@ -210,6 +216,11 @@ class Filter extends VuexModule {
     }
 
     @Mutation
+    updatePage(pageNumber: number) {
+        this.currentPage = pageNumber;
+    }
+
+    @Mutation
     public clearAllFilter() {
         this.filtersSelected.categories = [];
         this.filtersSelected.colors = [];
@@ -245,6 +256,11 @@ class Filter extends VuexModule {
     @Action({ commit: 'updateColorsSelected' })
     selectColor(color: string) {
         return color;
+    }
+
+    @Action({ commit: 'updatePage' })
+    selectPage(pageNumber: number) {
+        return pageNumber;
     }
 }
 
