@@ -99,6 +99,14 @@
                                                     1.2</a
                                                 >
                                             </li>
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link"
+                                                    href="final-assignments"
+                                                    ><i class="ti-control-record"></i
+                                                    >Final Assignments</a
+                                                >
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>

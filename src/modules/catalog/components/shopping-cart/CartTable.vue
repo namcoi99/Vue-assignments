@@ -13,6 +13,10 @@
             <CartRow v-for="(item, index) in cartItems" :key="index" :item="item" />
         </tbody>
     </table>
+    <div v-if="!cartItems.length" class="text-center fs-4 mb-3">
+        You have no items in shopping cart
+        <hr />
+    </div>
     <router-link :to="{ name: 'catalog' }">
         <button class="app-btn secondary me-3">Continue Shopping</button>
     </router-link>
