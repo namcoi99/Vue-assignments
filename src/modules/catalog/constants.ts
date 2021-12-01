@@ -29,3 +29,7 @@ export const PRICE_FILTER = 'filterPrices';
 export const COLOR_FILTER = 'filterColors';
 
 export const DEFAULT_PAGE_LIMIT = 5;
+
+export const TAX_RATE = 10;
+export const GST_RATE = 5;
+export const SHIPPING_PRICE = 20;

@@ -9,6 +9,12 @@ import axios from 'axios';
 class Product extends VuexModule {
     products: IProduct[] = [];
     productsCount = 0;
+    loading = false;
+
+    @Mutation
+    setLoading(bool: boolean) {
+        this.loading = bool;
+    }
 
     @Mutation
     setProducts(responseData: { products: IProduct[]; totalProducts: number }) {
@@ -24,6 +30,9 @@ class Product extends VuexModule {
                 _page: pageOption.page,
             },
         });
+        console.log(response);
+        console.log(response.headers['x-total-count']);
+
         return {
             products: response.data,
             totalProducts: response.headers['x-total-count'],
@@ -36,6 +45,10 @@ class Product extends VuexModule {
 
     get getProductsCount() {
         return this.productsCount;
+    }
+
+    get getLoading() {
+        return this.loading;
     }
 }
 

@@ -21,6 +21,11 @@ export interface IProduct {
     reviews: number;
 }
 
+export interface ICartProduct {
+    product: IProduct;
+    quantity: number;
+}
+
 export interface ICategory {
     id: number;
     name: string;

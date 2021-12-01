@@ -21,7 +21,7 @@
                 ${{ product.price }}
             </span>
             <span class="discount-price fw-bold"> ${{ discountPrice }} </span>
-            <button class="app-btn plain add-to-cart">
+            <button class="app-btn plain add-to-cart" @click="addToCart">
                 <img :src="cartIcon" alt="cart icon" />
                 Add To Cart
             </button>
@@ -59,8 +59,10 @@
 </template>
 
 <script lang="ts">
+import { ElNotification } from 'element-plus';
 import { defineComponent, PropType } from 'vue';
 import StarRating from 'vue-star-rating';
+import { cartModule } from '../../store/cartStore';
 import { filterModule } from '../../store/filterStore';
 import { IProduct } from '../../types';
 
@@ -91,6 +93,17 @@ export default defineComponent({
         },
         imageUrl(): string {
             return require(`@/assets/images/catalog/${this.product.img[0]}.png`);
+        },
+    },
+    methods: {
+        addToCart() {
+            cartModule.addToCart({ product: this.product, quantity: 1 });
+            ElNotification({
+                title: 'Success',
+                message: 'Product has been added to cart',
+                type: 'success',
+                offset: 100,
+            });
         },
     },
 });

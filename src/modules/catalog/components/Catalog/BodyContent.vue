@@ -1,7 +1,7 @@
 <template>
     <div class="catalog-content">
-        perPage: {{ perPage }}; total: {{ totalProducts }}; currentPage :
-        {{ page }}
+        <!-- perPage: {{ perPage }}; total: {{ totalProducts }}; currentPage :
+        {{ page }} -->
         <img class="catalog-hero-banner" :src="heroBanner" alt="hero banner" />
         <Breadcrumb />
         <h1 class="catalog-title">MSI PS Series(20)</h1>
@@ -23,11 +23,39 @@
                     </div>
                     <button class="selected-category fw-bold">Clear All</button>
                 </div>
-                <ProductCard
-                    v-for="product in filteredProducts"
-                    :key="product.id"
-                    :product="product"
-                />
+                <el-skeleton style="width: 240px" :loading="loading" animated>
+                    <template #template>
+                        <el-skeleton-item
+                            variant="image"
+                            style="width: 240px; height: 240px"
+                        />
+                        <div style="padding: 14px">
+                            <el-skeleton-item variant="h3" style="width: 50%" />
+                            <div
+                                style="
+                                    display: flex;
+                                    align-items: center;
+                                    justify-items: space-between;
+                                    margin-top: 16px;
+                                    height: 16px;
+                                "
+                            >
+                                <el-skeleton-item
+                                    variant="text"
+                                    style="margin-right: 16px"
+                                />
+                                <el-skeleton-item variant="text" style="width: 30%" />
+                            </div>
+                        </div>
+                    </template>
+                    <template #default>
+                        <ProductCard
+                            v-for="product in filteredProducts"
+                            :key="product.id"
+                            :product="product"
+                        />
+                    </template>
+                </el-skeleton>
                 <el-col :span="24">
                     <el-pagination
                         v-model:page-size="perPage"
@@ -75,14 +103,19 @@ export default defineComponent({
         };
     },
     created() {
-        watchEffect(() => {
-            productModule.getProducts({
+        watchEffect(async () => {
+            productModule.setLoading(true);
+            await productModule.getProducts({
                 limit: this.perPage,
                 page: this.page,
             });
+            productModule.setLoading(false);
         });
     },
     computed: {
+        loading() {
+            return productModule.getLoading;
+        },
         categoriesSelected() {
             return filterModule.getFiltersSelected.categories;
         },

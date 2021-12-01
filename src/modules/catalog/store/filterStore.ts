@@ -221,7 +221,7 @@ class Filter extends VuexModule {
     }
 
     @Mutation
-    public clearAllFilter() {
+    clearAllFilter() {
         this.filtersSelected.categories = [];
         this.filtersSelected.colors = [];
         this.filtersSelected.prices = [];

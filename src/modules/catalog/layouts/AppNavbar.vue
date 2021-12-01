@@ -1,11 +1,13 @@
 <template>
     <div class="app-navbar">
-        <div class="app-navbar-brand">
-            <img :src="logo" alt="logo" />
-        </div>
+        <router-link :to="{ name: 'catalog' }">
+            <div class="app-navbar-brand">
+                <img :src="logo" alt="logo" />
+            </div>
+        </router-link>
         <ul class="app-navbar-nav fw-bold">
             <li class="nav-item">
-                <router-link to="#">Laptops</router-link>
+                <router-link :to="{ name: 'catalog' }">Laptops</router-link>
             </li>
             <li class="nav-item">
                 <router-link to="#">Desktop PCs</router-link>
@@ -32,12 +34,14 @@
         <div class="navbar-btn navbar-search-btn">
             <img :src="searchIcon" alt="search icon" />
         </div>
-        <div class="navbar-btn navbar-cart-btn">
-            <img :src="cartIcon" alt="cart icon" />
-            <span class="cart-badge">
-                {{ productsNumber }}
-            </span>
-        </div>
+        <router-link :to="{ name: 'shoppingCart' }">
+            <div class="navbar-btn navbar-cart-btn">
+                <img :src="cartIcon" alt="cart icon" />
+                <span v-if="productsNumber" class="cart-badge">
+                    {{ productsNumber }}
+                </span>
+            </div>
+        </router-link>
         <div class="navbar-avatar">
             <img :src="avatar" alt="avatar" />
         </div>

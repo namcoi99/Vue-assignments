@@ -1,0 +1,58 @@
+<template>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col" style="width: 50%">Item</th>
+                <th scope="col">Price</th>
+                <th scope="col">Qty</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <CartRow v-for="(item, index) in cartItems" :key="index" :item="item" />
+        </tbody>
+    </table>
+    <router-link :to="{ name: 'catalog' }">
+        <button class="app-btn secondary me-3">Continue Shopping</button>
+    </router-link>
+    <button class="app-btn dark" @click="clearCart">Clear Shopping Cart</button>
+</template>
+
+<script lang="ts">
+import { ElNotification } from 'element-plus';
+import { defineComponent } from 'vue';
+import { cartModule } from '../../store/cartStore';
+import CartRow from './CartRow.vue';
+export default defineComponent({
+    components: {
+        CartRow,
+    },
+    data() {
+        return {};
+    },
+    computed: {
+        cartItems() {
+            return cartModule.getShoppingCart;
+        },
+    },
+    methods: {
+        clearCart() {
+            cartModule.clearCart();
+            ElNotification({
+                title: 'Success',
+                message: 'Clear cart successful',
+                type: 'success',
+                offset: 100,
+            });
+        },
+    },
+});
+</script>
+
+<style lang="scss" scoped>
+.cart-item-img {
+    width: 120px;
+    height: 120px;
+}
+</style>

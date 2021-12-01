@@ -1,24 +1,16 @@
 <template>
-    <div class="catalog">
+    <div class="main-page">
         <AppHeader />
-        <BodyContent :page="page" />
+        <router-view></router-view>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AppHeader from '@/modules/catalog/layouts/AppHeader.vue';
-import BodyContent from '@/modules/catalog/components/catalog/BodyContent.vue';
 export default defineComponent({
-    props: {
-        page: {
-            type: Number,
-            required: true,
-        },
-    },
     components: {
         AppHeader,
-        BodyContent,
     },
 });
 </script>
@@ -37,6 +29,11 @@ export default defineComponent({
     }
 }
 
+.app-btn.disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
 .app-btn:hover {
     opacity: 0.8;
 }
@@ -48,6 +45,23 @@ export default defineComponent({
         filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(55deg) brightness(102%)
             contrast(101%);
     }
+}
+
+.app-btn.dark {
+    background-color: #000;
+    color: #fff;
+    border: none;
+}
+
+.app-btn.secondary {
+    background-color: #fff;
+    color: #a2a6b0;
+    border: 2px solid #a2a6b0;
+}
+
+.app-btn.secondary:hover {
+    background-color: #a2a6b0;
+    color: #fff;
 }
 
 .app-btn.plain {
@@ -76,7 +90,7 @@ export default defineComponent({
 </style>
 
 <style scoped>
-.catalog {
+.main-page {
     font-family: Poppins;
     font-style: normal;
     font-size: 14px;
