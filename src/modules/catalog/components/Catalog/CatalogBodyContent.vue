@@ -71,9 +71,9 @@
 
 <script lang="ts">
 import Breadcrumb from './Breadcrumb.vue';
-import SideFilter from './SideFilter.vue';
-import TopFilter from './TopFilter.vue';
-import ProductCard from './ProductCard.vue';
+import SideFilter from './CatalogSideFilter.vue';
+import TopFilter from './CatalogTopFilter.vue';
+import ProductCard from './CatalogProductCard.vue';
 import { defineComponent, watchEffect } from 'vue';
 import { productModule } from '../../store/productStore';
 import { filterModule } from '../../store/filterStore';

@@ -4,7 +4,7 @@
             Items {{ fromProduct }}-{{ toProduct }} of {{ totalProductsCount }}
         </div>
         <div class="product-show-option">
-            <TopFilterSelect />
+            <CatalogTopFilterSelect />
             <button
                 class="show-option-btn"
                 :class="{ active: viewOption === VIEW_CARD_OPTION }"
@@ -31,12 +31,12 @@ import {
     DEFAULT_PAGE_LIMIT,
 } from '../../constants';
 import { filterModule } from '@/modules/catalog/store/filterStore';
-import TopFilterSelect from './TopFilterSelect.vue';
+import CatalogTopFilterSelect from './CatalogTopFilterSelect.vue';
 import { productModule } from '../../store/productStore';
 
 export default defineComponent({
     components: {
-        TopFilterSelect,
+        CatalogTopFilterSelect,
     },
     data() {
         return {

@@ -1,8 +1,8 @@
 import { RouteRecordRaw } from 'vue-router';
 import MainPage from './pages/MainPage.vue';
-import CatalogBodyContent from './components/catalog/BodyContent.vue';
-import CartBodyContent from './components/shopping-cart/BodyContent.vue';
-import ProductBodyContent from './components/product/BodyContent.vue';
+import CatalogBodyContent from './components/catalog/CatalogBodyContent.vue';
+import CartBodyContent from './components/shopping-cart/CartBodyContent.vue';
+import ProductBodyContent from './components/product/ProductBodyContent.vue';
 import ProductAbout from './components/product/ProductAbout.vue';
 import ProductDetails from './components/product/ProductDetails.vue';
 import ProductSpecs from './components/product/ProductSpecs.vue';

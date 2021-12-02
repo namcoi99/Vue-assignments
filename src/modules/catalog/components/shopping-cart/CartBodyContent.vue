@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CartTable from './CartTable.vue';
-import Invoice from './Invoice.vue';
+import Invoice from './CartInvoice.vue';
 export default defineComponent({
     components: {
         CartTable,

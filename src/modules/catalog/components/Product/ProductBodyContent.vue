@@ -2,7 +2,7 @@
     <el-skeleton class="mt-3" :rows="10" animated :loading="loading">
         <TopNavigation :product="product" />
         <div v-if="product" class="product-content">
-            <ContentLeft :product="product" />
+            <ProductContentLeft :product="product" />
             <ContentRight />
         </div>
     </el-skeleton>
@@ -13,9 +13,9 @@ import { defineComponent } from '@vue/runtime-core';
 import { watchEffect } from 'vue';
 import { productModule } from '../../store/productStore';
 import { IProduct } from '../../types';
-import ContentLeft from '../product/ContentLeft.vue';
-import ContentRight from '../product/ContentRight.vue';
-import TopNavigation from '../product/TopNavigation.vue';
+import ProductContentLeft from './ProductContentLeft.vue';
+import ContentRight from './ProductContentRight.vue';
+import TopNavigation from './ProductTopNavigation.vue';
 
 export default defineComponent({
     props: {
@@ -25,7 +25,7 @@ export default defineComponent({
         },
     },
     components: {
-        ContentLeft,
+        ProductContentLeft,
         ContentRight,
         TopNavigation,
     },

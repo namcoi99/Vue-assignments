@@ -35,7 +35,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-     "src/modules/catalog/layouts/AppContact.vue", "src/modules/catalog/layouts/AppHeader.vue", "src/modules/catalog/pages/MainPage.vue"  ],
+     "src/modules/catalog/layouts/AppContact.vue", "src/modules/catalog/layouts/AppHeader.vue", "src/modules/catalog/pages/MainPage.vue", "src/modules/catalog/components/catalog/CatalogBodyContent.vue", "src/modules/catalog/components/product/ProductContentRight.vue", "src/modules/catalog/components/product/ProductContentLeft.vue", "src/modules/catalog/components/product/ProductTopNavigation.vue", "src/modules/catalog/components/shopping-cart/CartBodyContent.vue"  ],
   "exclude": [
     "node_modules"
   ]
