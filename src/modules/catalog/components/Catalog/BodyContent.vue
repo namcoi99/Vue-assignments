@@ -1,7 +1,5 @@
 <template>
     <div class="catalog-content">
-        <!-- perPage: {{ perPage }}; total: {{ totalProducts }}; currentPage :
-        {{ page }} -->
         <img class="catalog-hero-banner" :src="heroBanner" alt="hero banner" />
         <Breadcrumb />
         <h1 class="catalog-title">MSI PS Series(20)</h1>
@@ -48,7 +46,17 @@
                             </div>
                         </div>
                     </template>
+                    <!-- FIXME: bug when using pagination with vuex -->
                     <template #default>
+                        <div>
+                            <el-pagination
+                                :page-size="perPage"
+                                v-model:currentPage="currentPage"
+                                layout="prev, pager, next"
+                                :total="+total"
+                            >
+                            </el-pagination>
+                        </div>
                         <ProductCard
                             v-for="product in filteredProducts"
                             :key="product.id"
@@ -56,15 +64,6 @@
                         />
                     </template>
                 </el-skeleton>
-                <el-col :span="24">
-                    <el-pagination
-                        v-model:page-size="perPage"
-                        v-model:current-page="page"
-                        layout="prev, pager, next"
-                        :total="6"
-                    >
-                    </el-pagination>
-                </el-col>
             </el-col>
         </el-row>
     </div>
@@ -86,7 +85,6 @@ import {
 } from '../../constants';
 import { IProduct, ISelectedPrice } from '../../types';
 
-// FIXME: hard code total products in pagination + conflict with filtering
 export default defineComponent({
     components: {
         Breadcrumb,
@@ -97,25 +95,40 @@ export default defineComponent({
     data() {
         return {
             heroBanner: require('@/assets/images/catalog/hero-banner.png'),
-            perPage: filterModule.getPageOption,
-            page: filterModule.getCurrentPage,
-            total: productModule.getProductsCount,
+            currentPage: filterModule.getCurrentPage || 1,
         };
     },
     created() {
         watchEffect(async () => {
-            productModule.setLoading(true);
+            productModule.SET_LOADING(true);
             await productModule.getProducts({
                 limit: this.perPage,
-                page: this.page,
+                page: this.currentPage,
             });
-            productModule.setLoading(false);
+            productModule.SET_LOADING(false);
         });
     },
     computed: {
         loading() {
             return productModule.getLoading;
         },
+        total() {
+            return productModule.getProductsCount;
+        },
+        perPage() {
+            return filterModule.getOptions.page;
+            // get() {
+            // },
+            // set(value) {},
+        },
+        // currentPage: {
+        //     get() {
+        //         return filterModule.getCurrentPage;
+        //     },
+        //     set(value) {
+        //         filterModule.selectPage(value);
+        //     },
+        // },
         categoriesSelected() {
             return filterModule.getFiltersSelected.categories;
         },
@@ -126,8 +139,7 @@ export default defineComponent({
             const products = productModule.getAllProducts;
             let filteredProducts: IProduct[] = [];
 
-            const sortOption = filterModule.getSortOption;
-            // const pageOption = filterModule.getPageOption;
+            const sortOption = filterModule.getOptions.sort;
 
             if (sortOption === POSITION_SORT_OPTION) {
                 filteredProducts = products.sort((a, b) => a.id - b.id);

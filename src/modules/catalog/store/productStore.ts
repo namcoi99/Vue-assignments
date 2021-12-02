@@ -1,7 +1,6 @@
 import { PRODUCT_BASE_URL } from './../constants';
 import { getModule, VuexModule, Mutation, Action, Module } from 'vuex-module-decorators';
 import store from '@/store';
-// import { productService } from '../services/api.service';
 import { IProduct, IPage } from '../types';
 import axios from 'axios';
 
@@ -12,17 +11,17 @@ class Product extends VuexModule {
     loading = false;
 
     @Mutation
-    setLoading(bool: boolean) {
+    SET_LOADING(bool: boolean) {
         this.loading = bool;
     }
 
     @Mutation
-    setProducts(responseData: { products: IProduct[]; totalProducts: number }) {
+    SET_PRODUCTS(responseData: { products: IProduct[]; totalProducts: number }) {
         this.products = responseData.products;
         this.productsCount = responseData.totalProducts;
     }
 
-    @Action({ commit: 'setProducts' })
+    @Action({ commit: 'SET_PRODUCTS' })
     async getProducts(pageOption: IPage) {
         const response = await axios.get(PRODUCT_BASE_URL, {
             params: {
@@ -30,13 +29,20 @@ class Product extends VuexModule {
                 _page: pageOption.page,
             },
         });
-        console.log(response);
-        console.log(response.headers['x-total-count']);
-
         return {
             products: response.data,
             totalProducts: response.headers['x-total-count'],
         };
+    }
+
+    @Action
+    async getProductById(id: number) {
+        const response = await axios.get(PRODUCT_BASE_URL, {
+            params: {
+                id: id,
+            },
+        });
+        return response.data[0];
     }
 
     get getAllProducts() {

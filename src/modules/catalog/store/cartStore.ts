@@ -28,7 +28,7 @@ class Cart extends VuexModule {
     }
 
     @Mutation
-    updateCart(cartProduct: ICartProduct) {
+    UPDATE_CART(cartProduct: ICartProduct) {
         const cartProductExist = this.shoppingCart.find(
             (item) => item.product.id === cartProduct.product.id,
         );
@@ -40,7 +40,7 @@ class Cart extends VuexModule {
     }
 
     @Mutation
-    updateQuantity(cartProduct: ICartProduct) {
+    UPDATE_QUANTITY(cartProduct: ICartProduct) {
         const cartProductExist = this.shoppingCart.find(
             (item) => item.product.id === cartProduct.product.id,
         );
@@ -52,7 +52,7 @@ class Cart extends VuexModule {
     }
 
     @Mutation
-    deleteItem(cartProductId: number) {
+    DELETE_ITEM_FROM_CART(cartProductId: number) {
         this.shoppingCart = this.shoppingCart.filter(
             (item) => item.product.id !== cartProductId,
         );
@@ -63,17 +63,17 @@ class Cart extends VuexModule {
         this.shoppingCart = [];
     }
 
-    @Action({ commit: 'updateCart' })
+    @Action({ commit: 'UPDATE_CART' })
     addToCart(cartProduct: ICartProduct) {
         return cartProduct;
     }
 
-    @Action({ commit: 'deleteItem' })
+    @Action({ commit: 'DELETE_ITEM_FROM_CART' })
     deleteItemFromCart(cartProductId: number) {
         return cartProductId;
     }
 
-    @Action({ commit: 'updateQuantity' })
+    @Action({ commit: 'UPDATE_QUANTITY' })
     changeQuantity(cartProduct: ICartProduct) {
         return cartProduct;
     }

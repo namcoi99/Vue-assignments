@@ -139,7 +139,7 @@ export default defineComponent({
             }`;
         },
         clearFilter() {
-            filterModule.clearAllFilter();
+            filterModule.CLEAR_FILTER();
         },
     },
 });

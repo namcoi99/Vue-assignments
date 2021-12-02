@@ -86,17 +86,16 @@ export default defineComponent({
                     label: `${THIRTYFIVE_PER_PAGE_OPTION} per page`,
                 },
             ],
-            sortValue: filterModule.getSortOption,
-            pageValue: filterModule.getPageOption,
+            sortValue: filterModule.getOptions.sort,
+            pageValue: filterModule.getOptions.page,
         };
     },
-    computed: {},
     methods: {
         handleSortOption(value: string) {
-            filterModule.changeSortOption(value);
+            filterModule.selectSortOption(value);
         },
         handlePageOption(value: number) {
-            filterModule.changePageOption(value);
+            filterModule.selectPageOption(value);
         },
     },
 });

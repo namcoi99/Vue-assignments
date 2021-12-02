@@ -20,9 +20,16 @@ import store from '@/store';
 
 @Module({ dynamic: true, namespaced: true, store, name: 'filter' })
 class Filter extends VuexModule {
-    viewOption: number[] = VIEW_DETAIL_OPTION;
-    sortOption: string = POSITION_SORT_OPTION;
-    pageOption: number = FIVE_PER_PAGE_OPTION;
+    options: {
+        view: number[];
+        sort: string;
+        page: number;
+    } = {
+        view: VIEW_DETAIL_OPTION,
+        sort: POSITION_SORT_OPTION,
+        page: FIVE_PER_PAGE_OPTION,
+    };
+
     currentPage: number = DEFAULT_CURRENT_PAGE;
     filterCategories: ICategory[] = [
         {
@@ -129,16 +136,8 @@ class Filter extends VuexModule {
         name: '',
     };
 
-    get getViewOption() {
-        return this.viewOption;
-    }
-
-    get getSortOption() {
-        return this.sortOption;
-    }
-
-    get getPageOption() {
-        return this.pageOption;
+    get getOptions() {
+        return this.options;
     }
 
     get getFilters() {
@@ -154,33 +153,33 @@ class Filter extends VuexModule {
     }
 
     @Mutation
-    updateViewOption(type: string) {
+    SELECT_VIEW_OPTION(type: string) {
         if (type === VIEW_DETAIL_TYPE) {
-            this.viewOption = VIEW_DETAIL_OPTION;
+            this.options.view = VIEW_DETAIL_OPTION;
         }
         if (type === VIEW_CARD_TYPE) {
-            this.viewOption = VIEW_CARD_OPTION;
+            this.options.view = VIEW_CARD_OPTION;
         }
     }
 
     @Mutation
-    updateSortOption(sortBy: string) {
-        if (this.sortOption === sortBy) {
+    SELECT_SORT_OPTION(sortBy: string) {
+        if (this.options.sort === sortBy) {
             return;
         }
-        this.sortOption = sortBy;
+        this.options.sort = sortBy;
     }
 
     @Mutation
-    updatePageOption(perPage: number) {
-        if (this.pageOption === perPage) {
+    SELECT_PAGE_OPTION(perPage: number) {
+        if (this.options.page === perPage) {
             return;
         }
-        this.pageOption = perPage;
+        this.options.page = perPage;
     }
 
     @Mutation
-    updateCategoriesSelected(category: string) {
+    SELECT_CATEGORY(category: string) {
         const categoriesSelected = this.filtersSelected.categories;
         const index = this.filtersSelected.categories.indexOf(category);
         if (index > -1) {
@@ -191,7 +190,7 @@ class Filter extends VuexModule {
     }
 
     @Mutation
-    updatePricesSelected(price: ISelectedPrice) {
+    SELECT_PRICE(price: ISelectedPrice) {
         const pricesSelected = this.filtersSelected.prices;
         const index = this.filtersSelected.prices.findIndex(
             (priceSelected) =>
@@ -205,7 +204,7 @@ class Filter extends VuexModule {
     }
 
     @Mutation
-    updateColorsSelected(color: string) {
+    SELECT_COLOR(color: string) {
         const colorsSelected = this.filtersSelected.colors;
         const index = this.filtersSelected.colors.indexOf(color);
         if (index > -1) {
@@ -216,49 +215,49 @@ class Filter extends VuexModule {
     }
 
     @Mutation
-    updatePage(pageNumber: number) {
+    SELECT_PAGE(pageNumber: number) {
         this.currentPage = pageNumber;
     }
 
     @Mutation
-    clearAllFilter() {
+    CLEAR_FILTER() {
         this.filtersSelected.categories = [];
         this.filtersSelected.colors = [];
         this.filtersSelected.prices = [];
         this.filtersSelected.name = '';
     }
 
-    @Action({ commit: 'updateViewOption' })
-    changeViewOption(type: string) {
+    @Action({ commit: 'SELECT_VIEW_OPTION' })
+    selectViewOption(type: string) {
         return type;
     }
 
-    @Action({ commit: 'updateSortOption' })
-    changeSortOption(sortBy: string) {
+    @Action({ commit: 'SELECT_SORT_OPTION' })
+    selectSortOption(sortBy: string) {
         return sortBy;
     }
 
-    @Action({ commit: 'updatePageOption' })
-    changePageOption(perPage: number) {
+    @Action({ commit: 'SELECT_PAGE_OPTION' })
+    selectPageOption(perPage: number) {
         return perPage;
     }
 
-    @Action({ commit: 'updateCategoriesSelected' })
+    @Action({ commit: 'SELECT_CATEGORY' })
     selectCategory(category: string) {
         return category;
     }
 
-    @Action({ commit: 'updatePricesSelected' })
+    @Action({ commit: 'SELECT_PRICE' })
     selectPrice(price: ISelectedPrice) {
         return price;
     }
 
-    @Action({ commit: 'updateColorsSelected' })
+    @Action({ commit: 'SELECT_COLOR' })
     selectColor(color: string) {
         return color;
     }
 
-    @Action({ commit: 'updatePage' })
+    @Action({ commit: 'SELECT_PAGE' })
     selectPage(pageNumber: number) {
         return pageNumber;
     }

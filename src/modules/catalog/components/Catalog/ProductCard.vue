@@ -1,7 +1,9 @@
 <template>
     <el-col class="product-card" :span="viewOption[0]">
         <el-col :span="viewOption[1]">
-            <img class="card-img" :src="imageUrl" alt="img" />
+            <router-link :to="{ name: 'productAbout', params: { id: product.id } }"
+                ><img class="card-img" :src="imageUrl" alt="img" />
+            </router-link>
             <star-rating
                 :star-size="13"
                 :round-start-rating="false"
@@ -86,7 +88,7 @@ export default defineComponent({
     },
     computed: {
         viewOption() {
-            return filterModule.getViewOption;
+            return filterModule.getOptions.view;
         },
         discountPrice(): number {
             return this.product.price - this.product.price * this.product.discount;

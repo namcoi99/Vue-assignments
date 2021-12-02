@@ -1,6 +1,8 @@
 <template>
     <div class="product-top">
-        <div class="item-count">Items 1-35 of 61</div>
+        <div class="item-count">
+            Items {{ fromProduct }}-{{ toProduct }} of {{ totalProductsCount }}
+        </div>
         <div class="product-show-option">
             <TopFilterSelect />
             <button
@@ -23,9 +25,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { VIEW_DETAIL_OPTION, VIEW_CARD_OPTION } from '../../constants';
+import {
+    VIEW_DETAIL_OPTION,
+    VIEW_CARD_OPTION,
+    DEFAULT_PAGE_LIMIT,
+} from '../../constants';
 import { filterModule } from '@/modules/catalog/store/filterStore';
 import TopFilterSelect from './TopFilterSelect.vue';
+import { productModule } from '../../store/productStore';
 
 export default defineComponent({
     components: {
@@ -39,12 +46,24 @@ export default defineComponent({
     },
     computed: {
         viewOption() {
-            return filterModule.getViewOption;
+            return filterModule.getOptions.view;
+        },
+        totalProductsCount() {
+            return productModule.getProductsCount;
+        },
+        fromProduct() {
+            return (filterModule.getCurrentPage - 1) * DEFAULT_PAGE_LIMIT + 1;
+        },
+        toProduct() {
+            return Math.min(
+                filterModule.getCurrentPage * DEFAULT_PAGE_LIMIT,
+                productModule.getProductsCount,
+            );
         },
     },
     methods: {
         handleViewOption(selected: string) {
-            filterModule.changeViewOption(selected);
+            filterModule.selectViewOption(selected);
         },
     },
 });

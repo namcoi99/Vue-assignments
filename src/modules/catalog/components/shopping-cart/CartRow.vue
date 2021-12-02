@@ -63,7 +63,7 @@ export default defineComponent({
             });
         },
         deleteItemFromCart() {
-            cartModule.deleteItem(this.item.product.id);
+            cartModule.deleteItemFromCart(this.item.product.id);
         },
     },
 });
