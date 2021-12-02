@@ -97,7 +97,6 @@ export default defineComponent({
     data() {
         return {
             heroBanner: require('@/assets/images/catalog/hero-banner.png'),
-            currentPage: filterModule.getCurrentPage || 1,
         };
     },
     created() {
@@ -117,20 +116,22 @@ export default defineComponent({
         total() {
             return productModule.getProductsCount;
         },
-        perPage() {
-            return filterModule.getOptions.page;
-            // get() {
-            // },
-            // set(value) {},
+        perPage: {
+            get() {
+                return filterModule.getOptions.page;
+            },
+            set(value) {
+                filterModule.selectPageOption(value);
+            },
         },
-        // currentPage: {
-        //     get() {
-        //         return filterModule.getCurrentPage;
-        //     },
-        //     set(value) {
-        //         filterModule.selectPage(value);
-        //     },
-        // },
+        currentPage: {
+            get() {
+                return filterModule.getCurrentPage;
+            },
+            set(value) {
+                filterModule.selectPage(value);
+            },
+        },
         categoriesSelected() {
             return filterModule.getFiltersSelected.categories;
         },

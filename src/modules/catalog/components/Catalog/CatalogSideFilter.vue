@@ -173,6 +173,7 @@ export default defineComponent({
         li:hover,
         li.active {
             font-weight: 600;
+            text-decoration: underline;
         }
         .color-item {
             display: inline-block;

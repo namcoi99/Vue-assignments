@@ -17,12 +17,12 @@ export const PRICE_DSC_SORT_OPTION = 'PriceDSC';
 export const NAME_SORT_OPTION = 'Name';
 
 // Page option
-export const DEFAULT_PAGE_LIMIT = 5;
 export const DEFAULT_CURRENT_PAGE = 1;
-export const FIVE_PER_PAGE_OPTION = 5;
-export const TEN_PER_PAGE_OPTION = 10;
-export const TWENTY_PER_PAGE_OPTION = 20;
-export const THIRTYFIVE_PER_PAGE_OPTION = 35;
+export const DEFAULT_PAGE_LIMIT = 1;
+export const FIVE_PER_PAGE_OPTION = 2;
+export const TEN_PER_PAGE_OPTION = 3;
+export const TWENTY_PER_PAGE_OPTION = 4;
+export const THIRTYFIVE_PER_PAGE_OPTION = 5;
 
 // Filter category, price, color...
 export const CATEGORY_FILTER = 'filterCategories';

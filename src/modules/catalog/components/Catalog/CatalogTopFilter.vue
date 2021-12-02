@@ -25,11 +25,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {
-    VIEW_DETAIL_OPTION,
-    VIEW_CARD_OPTION,
-    DEFAULT_PAGE_LIMIT,
-} from '../../constants';
+import { VIEW_DETAIL_OPTION, VIEW_CARD_OPTION } from '../../constants';
 import { filterModule } from '@/modules/catalog/store/filterStore';
 import CatalogTopFilterSelect from './CatalogTopFilterSelect.vue';
 import { productModule } from '../../store/productStore';
@@ -52,11 +48,11 @@ export default defineComponent({
             return productModule.getProductsCount;
         },
         fromProduct() {
-            return (filterModule.getCurrentPage - 1) * DEFAULT_PAGE_LIMIT + 1;
+            return (filterModule.getCurrentPage - 1) * filterModule.getOptions.page + 1;
         },
         toProduct() {
             return Math.min(
-                filterModule.getCurrentPage * DEFAULT_PAGE_LIMIT,
+                filterModule.getCurrentPage * filterModule.getOptions.page,
                 productModule.getProductsCount,
             );
         },
