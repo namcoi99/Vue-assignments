@@ -11,21 +11,32 @@
                 <img :src="heartIcon" alt="heart icon" />
             </button>
         </div>
-        <img class="product-img" :src="imageUrl" alt="product image" />
-        <div class="zip-brand">
-            <img class="zip-logo" :src="zipLogoImg" alt="zip logo" />
-            <p class="zip-text">
-                own it now, up to 6 months interest free
-                <a class="learn-more" href="#">learn more</a>
-            </p>
-        </div>
+        <el-carousel indicator-position="outside" arrow="never">
+            <el-carousel-item v-for="(image, index) in product.img" :key="index">
+                <img class="product-img" :src="imageUrl(image)" alt="product image" />
+                <div class="zip-brand">
+                    <img class="zip-logo" :src="zipLogoImg" alt="zip logo" />
+                    <p class="zip-text">
+                        own it now, up to 6 months interest free
+                        <a class="learn-more" href="#">learn more</a>
+                    </p>
+                </div>
+            </el-carousel-item>
+        </el-carousel>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
+import { IProduct } from '../../types';
 
 export default defineComponent({
+    props: {
+        product: {
+            type: Object as PropType<IProduct>,
+            required: true,
+        },
+    },
     data() {
         return {
             mailIcon: require('@/assets/images/catalog/icon/mail-icon.svg'),
@@ -34,10 +45,9 @@ export default defineComponent({
             zipLogoImg: require('@/assets/images/catalog/zip.png'),
         };
     },
-    computed: {
-        imageUrl(): string {
-            // return require(`@/assets/images/catalog/${this.product.img[0]}.png`);
-            return require(`@/assets/images/catalog/product/0.png`);
+    methods: {
+        imageUrl(image: string): string {
+            return require(`@/assets/images/catalog/${image}.png`);
         },
     },
 });
@@ -103,5 +113,10 @@ export default defineComponent({
         border: 1px solid #00aeb8;
         height: 23px;
     }
+}
+.el-carousel__button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
 }
 </style>

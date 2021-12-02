@@ -32,3 +32,26 @@ export const COLOR_FILTER = 'filterColors';
 export const TAX_RATE = 10;
 export const GST_RATE = 5;
 export const SHIPPING_PRICE = 20;
+
+export const COUNTRIES = [
+    {
+        value: 'AUS',
+        label: 'Australia',
+    },
+    {
+        value: 'US',
+        label: 'America',
+    },
+    {
+        value: 'CN',
+        label: 'China',
+    },
+    {
+        value: 'LAOS',
+        label: 'Laos',
+    },
+    {
+        value: 'VN',
+        label: 'Vietnam',
+    },
+];

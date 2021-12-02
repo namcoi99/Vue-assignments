@@ -66,3 +66,10 @@ export interface IPage {
     limit: number;
     page: number;
 }
+
+export enum INotifyType {
+    SUCCESS = 'success',
+    INFO = 'info',
+    WARNING = 'warning',
+    ERROR = 'error',
+}

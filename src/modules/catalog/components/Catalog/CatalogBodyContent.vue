@@ -19,7 +19,9 @@
                         <span class="fw-light">(24)</span>
                         <button class="clear-category-btn">X</button>
                     </div>
-                    <button class="selected-category fw-bold">Clear All</button>
+                    <button class="selected-category fw-bold" @click="clearFilter">
+                        Clear All
+                    </button>
                 </div>
                 <el-skeleton style="width: 240px" :loading="loading" animated>
                     <template #template>
@@ -201,6 +203,9 @@ export default defineComponent({
                     ? previousElement
                     : currentElement,
             ).max;
+        },
+        clearFilter() {
+            filterModule.CLEAR_FILTER();
         },
     },
 });

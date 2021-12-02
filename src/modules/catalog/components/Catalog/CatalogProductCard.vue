@@ -61,7 +61,6 @@
 </template>
 
 <script lang="ts">
-import { ElNotification } from 'element-plus';
 import { defineComponent, PropType } from 'vue';
 import StarRating from 'vue-star-rating';
 import { cartModule } from '../../store/cartStore';
@@ -100,12 +99,6 @@ export default defineComponent({
     methods: {
         addToCart() {
             cartModule.addToCart({ product: this.product, quantity: 1 });
-            ElNotification({
-                title: 'Success',
-                message: 'Product has been added to cart',
-                type: 'success',
-                offset: 100,
-            });
         },
     },
 });

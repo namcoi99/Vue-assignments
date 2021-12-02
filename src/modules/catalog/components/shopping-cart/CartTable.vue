@@ -24,7 +24,6 @@
 </template>
 
 <script lang="ts">
-import { ElNotification } from 'element-plus';
 import { defineComponent } from 'vue';
 import { cartModule } from '../../store/cartStore';
 import CartRow from './CartRow.vue';
@@ -43,12 +42,6 @@ export default defineComponent({
     methods: {
         clearCart() {
             cartModule.clearCart();
-            ElNotification({
-                title: 'Success',
-                message: 'Clear cart successful',
-                type: 'success',
-                offset: 100,
-            });
         },
     },
 });

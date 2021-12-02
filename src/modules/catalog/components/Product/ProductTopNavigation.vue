@@ -18,7 +18,7 @@
                 On Sale from
                 <span class="price"> ${{ discountPrice }}</span>
                 <div class="input-number">
-                    {{ count }}
+                    {{ quantity }}
                     <div class="btn-group">
                         <button @click="increase()" class="input-number-btn">
                             <i class="el-icon-arrow-up"></i>
@@ -29,9 +29,9 @@
                     </div>
                 </div>
 
-                <!-- <button class="app-btn add-to-cart" @click="addToCart">
+                <button class="app-btn add-to-cart" @click="addToCart">
                     Add to Cart
-                </button> -->
+                </button>
             </div>
         </div>
     </div>
@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
+import { cartModule } from '../../store/cartStore';
 import { IProduct } from '../../types';
 const MIN_VALUE = 1;
 const MAX_VALUE = 100;
@@ -67,7 +68,7 @@ export default defineComponent({
                 },
             ],
             currentPage: 'About Product',
-            count: 1,
+            quantity: 1,
         };
     },
     computed: {
@@ -77,17 +78,17 @@ export default defineComponent({
     },
     methods: {
         increase() {
-            if (this.count < MAX_VALUE) {
-                this.count++;
+            if (this.quantity < MAX_VALUE) {
+                this.quantity++;
             }
         },
         decrease() {
-            if (this.count > MIN_VALUE) {
-                this.count--;
+            if (this.quantity > MIN_VALUE) {
+                this.quantity--;
             }
         },
         addToCart() {
-            // cartModule.addToCart({this.product, quantity: 1});
+            cartModule.addToCart({ product: this.product, quantity: this.quantity });
         },
     },
 });

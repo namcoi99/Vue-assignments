@@ -1,4 +1,5 @@
-import { ICartProduct } from './../types';
+import { notify } from './../util';
+import { ICartProduct, INotifyType } from './../types';
 
 import { getModule, VuexModule, Mutation, Action, Module } from 'vuex-module-decorators';
 import store from '@/store';
@@ -60,16 +61,27 @@ class Cart extends VuexModule {
 
     @Mutation
     clearCart() {
-        this.shoppingCart = [];
+        if (this.shoppingCart.length) {
+            this.shoppingCart = [];
+            notify('Success', 'Clear cart successful', INotifyType.SUCCESS);
+        } else {
+            notify('Error', 'Your cart is empty', INotifyType.ERROR);
+        }
     }
 
     @Action({ commit: 'UPDATE_CART' })
     addToCart(cartProduct: ICartProduct) {
+        notify('Success', 'Product has been added to cart', INotifyType.SUCCESS);
         return cartProduct;
     }
 
     @Action({ commit: 'DELETE_ITEM_FROM_CART' })
     deleteItemFromCart(cartProductId: number) {
+        notify(
+            'Success',
+            `Product with id ${cartProductId} has been deleted from cart`,
+            INotifyType.SUCCESS,
+        );
         return cartProductId;
     }
 

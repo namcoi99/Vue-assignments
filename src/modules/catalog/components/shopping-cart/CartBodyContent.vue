@@ -5,7 +5,7 @@
             <div class="col-md-8">
                 <CartTable />
             </div>
-            <div class="col-md">
+            <div class="col-md-4">
                 <Invoice />
             </div>
         </div>

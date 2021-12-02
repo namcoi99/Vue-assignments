@@ -3,7 +3,7 @@
         <TopNavigation :product="product" />
         <div v-if="product" class="product-content">
             <ProductContentLeft :product="product" />
-            <ContentRight />
+            <ContentRight :product="product" />
         </div>
     </el-skeleton>
 </template>
