@@ -48,22 +48,25 @@
                             </div>
                         </div>
                     </template>
-                    <!-- FIXME: bug when using pagination with vuex -->
                     <template #default>
-                        <div>
+                        <ProductCard
+                            v-for="product in filteredProducts"
+                            :key="product.id"
+                            :product="product"
+                        />
+                        <el-col
+                            :span="24"
+                            class="d-flex mt-3 justify-content-center w-100"
+                        >
                             <el-pagination
+                                background
                                 :page-size="perPage"
                                 v-model:currentPage="currentPage"
                                 layout="prev, pager, next"
                                 :total="+total"
                             >
                             </el-pagination>
-                        </div>
-                        <ProductCard
-                            v-for="product in filteredProducts"
-                            :key="product.id"
-                            :product="product"
-                        />
+                        </el-col>
                     </template>
                 </el-skeleton>
             </el-col>

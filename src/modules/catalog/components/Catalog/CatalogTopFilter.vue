@@ -1,5 +1,5 @@
 <template>
-    <div class="product-top">
+    <div class="product-top mb-3">
         <div class="item-count">
             Items {{ fromProduct }}-{{ toProduct }} of {{ totalProductsCount }}
         </div>
