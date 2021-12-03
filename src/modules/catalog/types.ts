@@ -73,3 +73,8 @@ export enum INotifyType {
     WARNING = 'warning',
     ERROR = 'error',
 }
+
+export enum IReceiveMethods {
+    STANDARD = 'standard',
+    PICKUP = 'pickup',
+}

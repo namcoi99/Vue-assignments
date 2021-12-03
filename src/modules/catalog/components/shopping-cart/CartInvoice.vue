@@ -68,7 +68,7 @@
                         class="d-flex text-wrap fw-normal"
                     >
                         Price may vary depending on the item/destination. Shop Staff will
-                        contact you. $21.00
+                        contact you. ${{ shipping.toFixed(2) }}
                     </el-radio>
                 </el-form-item>
                 <el-form-item class="address-item" prop="receiveMethod">
@@ -115,7 +115,7 @@
         <ul class="price-list">
             <li class="price-item">
                 <div>Subtotal</div>
-                <div>${{ subTotal }}</div>
+                <div>${{ invoiceSubTotal }}</div>
             </li>
             <li class="price-item">
                 <div>
@@ -125,15 +125,15 @@
                         TECS Staff will contact you.)
                     </div>
                 </div>
-                <div>{{ shipping }}</div>
+                <div>{{ invoiceShipping }}</div>
             </li>
             <li class="price-item">
                 <div>Tax</div>
-                <div>${{ tax }}</div>
+                <div>${{ invoiceTax }}</div>
             </li>
             <li class="price-item">
-                <div>GST (10%)</div>
-                <div>${{ gst }}</div>
+                <div>GST ({{ gstRate }}%)</div>
+                <div>${{ invoiceGst }}</div>
             </li>
             <li class="price-item">
                 <div>Order Total</div>
@@ -168,12 +168,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { COUNTRIES, GST_RATE, SHIPPING_PRICE, TAX_RATE } from '../../constants';
+import {
+    COUNTRIES,
+    GST_RATE,
+    PICKUP_PRICE,
+    SHIPPING_PRICE,
+    TAX_RATE,
+} from '../../constants';
 import { cartModule } from '../../store/cartStore';
+import { IReceiveMethods } from '../../types';
 export default defineComponent({
     data() {
         return {
-            shipping: this.cartLength ? SHIPPING_PRICE : 0,
+            gstRate: GST_RATE,
             shippingTaxVisible: false,
             discountCodeVisible: false,
             checkoutDoneModalVisible: false,
@@ -216,6 +223,7 @@ export default defineComponent({
                 receiveMethod: [
                     {
                         required: true,
+                        type: IReceiveMethods,
                         message: 'Please select receive method',
                         trigger: 'change',
                     },
@@ -224,20 +232,33 @@ export default defineComponent({
         };
     },
     computed: {
-        cartLength() {
+        cartLength(): number {
             return cartModule.getProductsNumber;
         },
-        subTotal(): number {
+        shipping(): number {
+            return this.cartLength ? SHIPPING_PRICE : 0;
+        },
+        invoiceSubTotal(): number {
             return cartModule.getTotalPrice;
         },
-        tax(): number {
-            return (this.subTotal * TAX_RATE) / 100;
+        invoiceShipping(): number {
+            return this.paymentForm.receiveMethod === IReceiveMethods.STANDARD
+                ? this.shipping
+                : PICKUP_PRICE;
         },
-        gst(): number {
-            return (this.subTotal * GST_RATE) / 100;
+        invoiceTax(): number {
+            return (this.invoiceSubTotal * TAX_RATE) / 100;
+        },
+        invoiceGst(): number {
+            return (this.invoiceSubTotal * GST_RATE) / 100;
         },
         orderTotal(): number {
-            return this.shipping + this.tax + this.gst + this.subTotal;
+            return (
+                this.invoiceShipping +
+                this.invoiceTax +
+                this.invoiceGst +
+                this.invoiceSubTotal
+            );
         },
     },
     methods: {

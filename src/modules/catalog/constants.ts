@@ -32,6 +32,7 @@ export const COLOR_FILTER = 'filterColors';
 export const TAX_RATE = 10;
 export const GST_RATE = 5;
 export const SHIPPING_PRICE = 20;
+export const PICKUP_PRICE = 0;
 
 export const COUNTRIES = [
     {
